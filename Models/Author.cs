@@ -18,6 +18,8 @@ namespace Models
 
         public string Job { get; set; }
 
+        public virtual Article Article { get; set; }
+
         public int ArticleId { get; set; }
     }
 }

@@ -19,5 +19,7 @@ namespace DAL.ViewModel
         public string Job { get; set; }
 
         public int ArticleId { get; set; }
+
+        public string ArticleName { get; set; }
     }
 }

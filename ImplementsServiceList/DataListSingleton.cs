@@ -17,7 +17,10 @@ namespace ImplementsServiceList
 
         public static DataListSingleton GetInstance()
         {
-            instance = new DataListSingleton();
+            if (instance == null)
+            {
+                instance = new DataListSingleton();
+            }
             return instance; 
         }
 

@@ -21,14 +21,18 @@ namespace ImplementsServiceList.Implementations
 
         public List<AuthorViewModel> GetList()
         {
+            //var tmp = source.Articles.FirstOrDefault(recA => recA.Id == source.Authors[1].ArticleId);
+
             List<AuthorViewModel> authors = source.Authors.Select(rec => new AuthorViewModel
             {
                 Id = rec.Id,
                 FullName = rec.FullName,
                 Email = rec.Email,
                 DateBirth = rec.DateBirth,
-                Job = rec.Job,
-                ArticleId = rec.ArticleId
+               
+                ArticleId = rec.ArticleId,
+                ArticleName = source.Articles.FirstOrDefault(recA => recA.Id == rec.ArticleId)?.Title,
+                Job = rec.Job
             })
             .ToList();
             return authors;
@@ -46,7 +50,9 @@ namespace ImplementsServiceList.Implementations
                     Email = author.Email,
                     DateBirth = author.DateBirth,
                     Job = author.Job,
-                    ArticleId = author.ArticleId
+                    ArticleId = author.ArticleId,
+                    ArticleName = source.Articles.FirstOrDefault(recA => recA.Id == author.ArticleId)?.Title
+
                 };
             }
             throw new Exception("Автор не найден");
@@ -67,7 +73,7 @@ namespace ImplementsServiceList.Implementations
                 DateBirth = authors.DateBirth,
                 Email = authors.Email,
                 Job = authors.Job,
-                ArticleId = authors.Id
+                ArticleId = authors.Id + 1
             });
         }
 
