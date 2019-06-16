@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace DAL.ViewModel
 {
-    public class AuthorViewModel
+    public class ReportViewModel
     {
-        public int Id { get; set; }
+        public string Title { get; set; }
+
+        public DateTime DateCreate { get; set; }
 
         public string FullName { get; set; }
-
-        public string Email { get; set; }
 
         public DateTime DateBirth { get; set; }
 
         public string Job { get; set; }
-
-        public int ArticleId { get; set; }
-
-        public string ArticleName { get; set; }
 
     }
 }

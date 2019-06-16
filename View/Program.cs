@@ -33,6 +33,7 @@ namespace View
             currentContainer.RegisterType<DbContext, AbstractDbContext>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IArticleService, ArticleServiceDB>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IAuthorService, AuthorServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

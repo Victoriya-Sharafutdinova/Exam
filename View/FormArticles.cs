@@ -103,9 +103,12 @@ namespace View
             form.ShowDialog();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
+ 
 
+        private void отчетыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReport>();
+            form.ShowDialog();
         }
     }
 }

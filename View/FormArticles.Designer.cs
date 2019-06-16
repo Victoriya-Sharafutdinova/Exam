@@ -35,6 +35,7 @@
             this.buttonUpd = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.авторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,13 +93,13 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.авторыToolStripMenuItem});
+            this.авторыToolStripMenuItem,
+            this.отчетыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(630, 28);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // авторыToolStripMenuItem
             // 
@@ -106,6 +107,13 @@
             this.авторыToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.авторыToolStripMenuItem.Text = "Авторы";
             this.авторыToolStripMenuItem.Click += new System.EventHandler(this.авторыToolStripMenuItem_Click);
+            // 
+            // отчетыToolStripMenuItem
+            // 
+            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            this.отчетыToolStripMenuItem.Click += new System.EventHandler(this.отчетыToolStripMenuItem_Click);
             // 
             // FormArticles
             // 
@@ -139,5 +147,6 @@
         private System.Windows.Forms.Button buttonUpd;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem авторыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
     }
 }
