@@ -18,8 +18,6 @@ namespace Models
 
         public string Job { get; set; }
 
-        public Article Article { get; set; }
-
         public int ArticleId { get; set; }
     }
 }

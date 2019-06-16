@@ -16,6 +16,5 @@ namespace DAL.BindingModel
 
         public DateTime DateCreate { get; set; }
 
-        public List<AuthorBindingModel> Authors { get; set; }
     }
 }

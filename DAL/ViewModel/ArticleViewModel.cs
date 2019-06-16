@@ -16,7 +16,5 @@ namespace DAL.ViewModel
 
         public DateTime DateCreate { get; set; }
 
-        public List<AuthorViewModel> Authors { get; set; }
-
     }
 }
