@@ -1,7 +1,10 @@
 ﻿using DAL.Interfaces;
+using ImplementDataBase;
+using ImplementDataBase.Implementations;
 using ImplementsServiceList.Implementations;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,9 +30,9 @@ namespace View
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-
-            currentContainer.RegisterType<IArticleService, ArticleServiceList>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IAuthorService, AuthorServiceList>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DbContext, AbstractDbContext>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IArticleService, ArticleServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IAuthorService, AuthorServiceDB>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

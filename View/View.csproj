@@ -128,6 +128,10 @@
       <Project>{240c38ae-5d0a-41b0-bc10-43237b03b5aa}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ImplementDataBase\ImplementDataBase.csproj">
+      <Project>{74E2B800-DA47-41EE-B65E-212A57113B73}</Project>
+      <Name>ImplementDataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImplementsServiceList\ImplementsServiceList.csproj">
       <Project>{642c7646-cbe1-496f-be4a-58a4c44d8854}</Project>
       <Name>ImplementsServiceList</Name>

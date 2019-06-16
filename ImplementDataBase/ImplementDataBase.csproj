@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{642C7646-CBE1-496F-BE4A-58A4C44D8854}</ProjectGuid>
+    <ProjectGuid>{74E2B800-DA47-41EE-B65E-212A57113B73}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImplementsServiceList</RootNamespace>
-    <AssemblyName>ImplementsServiceList</AssemblyName>
+    <RootNamespace>ImplementDataBase</RootNamespace>
+    <AssemblyName>ImplementDataBase</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,23 +48,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\ArticleServiceList.cs" />
-    <Compile Include="Implementations\AuthorServiceList.cs" />
-    <Compile Include="DataListSingleton.cs" />
+    <Compile Include="AbstractDbContext.cs" />
+    <Compile Include="Implementations\ArticleServiceDB.cs" />
+    <Compile Include="Implementations\AuthorServiceDB.cs" />
+    <Compile Include="Migrations\201906161802274_FirstMigration.cs" />
+    <Compile Include="Migrations\201906161802274_FirstMigration.Designer.cs">
+      <DependentUpon>201906161802274_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906161856411_SecondMigration.cs" />
+    <Compile Include="Migrations\201906161856411_SecondMigration.Designer.cs">
+      <DependentUpon>201906161856411_SecondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{240c38ae-5d0a-41b0-bc10-43237b03b5aa}</Project>
+      <Project>{240C38AE-5D0A-41B0-BC10-43237B03B5AA}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{77395ff9-362c-4cf8-965a-30c87e3977f8}</Project>
+      <Project>{77395FF9-362C-4CF8-965A-30C87E3977F8}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Migrations\201906161802274_FirstMigration.resx">
+      <DependentUpon>201906161802274_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906161856411_SecondMigration.resx">
+      <DependentUpon>201906161856411_SecondMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

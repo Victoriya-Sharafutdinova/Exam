@@ -8,36 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImplementsServiceList.Implementations
+namespace ImplementDataBase.Implementations
 {
-    public class AuthorServiceList : IAuthorService
+    public class AuthorServiceDB : IAuthorService
     {
-        private DataListSingleton source;
+        private AbstractDbContext context;
 
-        public AuthorServiceList()
-        {
-            source = DataListSingleton.GetInstance();
-        }
+        public AuthorServiceDB(AbstractDbContext context) { this.context = context; }
 
         public List<AuthorViewModel> GetList()
         {
-            List<AuthorViewModel> authors = source.Authors.Select(rec => new AuthorViewModel
+            List<AuthorViewModel> result = context.Authors.Select(rec => new AuthorViewModel
             {
                 Id = rec.Id,
                 FullName = rec.FullName,
                 Email = rec.Email,
-                DateBirth = rec.DateBirth,               
+                DateBirth = rec.DateBirth,
                 ArticleId = rec.ArticleId,
-                ArticleName = source.Articles.FirstOrDefault(recA => recA.Id == rec.ArticleId)?.Title,
+                ArticleName = context.Articles.FirstOrDefault(recA => recA.Id == rec.ArticleId).Title,
                 Job = rec.Job
-            })
-            .ToList();
-            return authors;
+            }).ToList();
+            return result;
         }
 
         public AuthorViewModel GetElement(int id)
         {
-            Author author = source.Authors.FirstOrDefault(rec => rec.Id == id);
+            Author author = context.Authors.FirstOrDefault(rec => rec.Id == id);
             if (author != null)
             {
                 return new AuthorViewModel
@@ -48,42 +44,40 @@ namespace ImplementsServiceList.Implementations
                     DateBirth = author.DateBirth,
                     Job = author.Job,
                     ArticleId = author.ArticleId,
-                    ArticleName = source.Articles.FirstOrDefault(recA => recA.Id == author.ArticleId)?.Title
-
+                    ArticleName = context.Articles.FirstOrDefault(recA => recA.Id == author.ArticleId)?.Title
                 };
             }
-            throw new Exception("Автор не найден");
+            throw new Exception("Элемент не найден");
         }
 
-        public void AddElement(AuthorBindingModel authors)
+        public void AddElement(AuthorBindingModel model)
         {
-            Author element = source.Authors.FirstOrDefault(rec => rec.FullName == authors.FullName);
-            if (element != null)
+            Author authors = context.Authors.FirstOrDefault(rec => rec.FullName == model.FullName);
+            if (authors != null)
             {
                 throw new Exception("Уже есть такой автор");
             }
-            int maxId = source.Authors.Count > 0 ? source.Authors.Max(rec => rec.Id) : 0;
-            source.Authors.Add(new Author
+            context.Authors.Add(new Author
             {
-                Id = maxId + 1,
-                FullName = authors.FullName,
-                DateBirth = authors.DateBirth,
-                Email = authors.Email,
-                Job = authors.Job,
-                ArticleId = authors.Id + 1
+                FullName = model.FullName,
+                DateBirth = model.DateBirth,
+                Email = model.Email,
+                Job = model.Job,
+                ArticleId = model.Id +1 
             });
+            context.SaveChanges();
         }
 
         public void UpdElement(AuthorBindingModel authors)
         {
-            Author element = source.Authors.FirstOrDefault(rec => rec.FullName == authors.FullName &&
+            Author element = context.Authors.FirstOrDefault(rec => rec.FullName == authors.FullName &&
             rec.Email == authors.Email && rec.DateBirth == authors.DateBirth && rec.Job == authors.Job
             && rec.ArticleId == authors.ArticleId && rec.Id != authors.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть такой автор");
             }
-            element = source.Authors.FirstOrDefault(rec => rec.Id == authors.Id);
+            element = context.Authors.FirstOrDefault(rec => rec.Id == authors.Id);
             if (element == null)
             {
                 throw new Exception("Элемент не найден");
@@ -93,19 +87,20 @@ namespace ImplementsServiceList.Implementations
             element.DateBirth = authors.DateBirth;
             element.Job = authors.Job;
             element.ArticleId = authors.ArticleId;
+            context.SaveChanges();
         }
 
         public void DelElement(int id)
         {
-            Author author = source.Authors.FirstOrDefault(rec => rec.Id == id);
-            if (author != null)
+            Author element = context.Authors.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                source.Authors.Remove(author);
+                context.Authors.Remove(element);
+                context.SaveChanges();
             }
             else
             {
                 throw new Exception("Элемент не найден");
-
             }
         }
     }

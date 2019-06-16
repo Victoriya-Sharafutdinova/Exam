@@ -68,7 +68,7 @@ namespace ImplementsServiceList.Implementations
         public void UpdElement (ArticleBindingModel article)
         {
             Article element = source.Articles.FirstOrDefault(rec => rec.Title == article.Title &&
-            rec.Subject == article.Subject && rec.DateCreate == article.DateCreate);
+            rec.Subject == article.Subject && rec.DateCreate == article.DateCreate && rec.Id != article.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть такая статья");
