@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,7 @@
     <Compile Include="BindingModel\ArticleBindingModel.cs" />
     <Compile Include="BindingModel\AuthorBindingModel.cs" />
     <Compile Include="BindingModel\ReportBindingModel.cs" />
+    <Compile Include="Interfaces\BackupService.cs" />
     <Compile Include="Interfaces\IArticleService.cs" />
     <Compile Include="Interfaces\IAuthorService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />

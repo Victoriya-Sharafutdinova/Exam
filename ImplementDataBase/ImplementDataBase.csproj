@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,7 @@
     <Compile Include="AbstractDbContext.cs" />
     <Compile Include="Implementations\ArticleServiceDB.cs" />
     <Compile Include="Implementations\AuthorServiceDB.cs" />
+    <Compile Include="Implementations\BackupServiceDB.cs" />
     <Compile Include="Implementations\ReportServiceDB.cs" />
     <Compile Include="Migrations\201906161802274_FirstMigration.cs" />
     <Compile Include="Migrations\201906161802274_FirstMigration.Designer.cs">

@@ -19,11 +19,13 @@ namespace View
         public new IUnityContainer Container { get; set; }
 
         private readonly IAuthorService service;
+        private readonly BackupService backupService;
 
-        public FormAuthors(IAuthorService service)
+        public FormAuthors(IAuthorService service, BackupService backupService)
         {
             InitializeComponent();
             this.service = service;
+            this.backupService = backupService;
         }
 
         private void FormAuthors_Load(object sender, EventArgs e)
@@ -100,6 +102,52 @@ namespace View
         {
             var form = Container.Resolve<FormAuthors>();
             form.ShowDialog();
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "json|*.json"
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    backupService.SaveAuthors(sfd.FileName);
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "json|*.json"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    backupService.LoadAuthors(openFileDialog.FileName);
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                   MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

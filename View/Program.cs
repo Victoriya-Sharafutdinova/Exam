@@ -34,6 +34,7 @@ namespace View
             currentContainer.RegisterType<IArticleService, ArticleServiceDB>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IAuthorService, AuthorServiceDB>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<BackupService, BackupServiceDB>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }
